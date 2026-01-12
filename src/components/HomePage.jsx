@@ -19,7 +19,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="hero bg-base-200 min-h-screen">
+    <div className="hero min-h-screen">
       <div className="hero-content text-center flex flex-col">
         <div className="max-w-xl">
           <h1 className="text-5xl font-bold leading-tight">

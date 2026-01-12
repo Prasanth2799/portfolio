@@ -15,8 +15,11 @@ const Navbar = () => {
   </div>
   <div>
     <ul className="flex gap-4">
-        <li>Home</li>
-        <li>Skills</li>
+        <li className="cursor-pointer hover:underline decoration-primary underline-offset-4 transition-all duration-200">Home</li>
+        <li className="cursor-pointer hover:underline decoration-primary underline-offset-4 transition-all duration-200">About</li>
+        <li className="cursor-pointer hover:underline decoration-primary underline-offset-4 transition-all duration-200">Skills</li>
+        <li className="cursor-pointer hover:underline decoration-primary underline-offset-4 transition-all duration-200">Projects</li>
+        <li className="cursor-pointer hover:underline decoration-primary underline-offset-4 transition-all duration-200">Contact</li>
     </ul>    
   </div>
 </div>
