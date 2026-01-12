@@ -2,12 +2,12 @@ import { PHOTO_URL } from "../utils/constants"
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-300 shadow-sm p-4 items-center">
+    <div className="navbar bg-base-200 shadow-sm px-2">
   <div className="flex-1">
     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
           <img
-            alt="Tailwind CSS Navbar component"
+            alt="profile-image"
             src={PHOTO_URL} />
         </div>
       </div>
