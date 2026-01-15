@@ -3,7 +3,8 @@ import { FaCode, FaLaptopCode } from "react-icons/fa"
 
 const About = () => {
   return (
-    <div className="flex w-full flex-col p-2 min-h-screen">
+    <section id="about">
+      <div className="flex w-full flex-col p-2 min-h-screen">
         <div className="divider"></div>
   <div className="rounded-box grid h-20 place-items-center">
     <CiUser size={40}/>
@@ -59,6 +60,8 @@ const About = () => {
     </div>
   </div>
 </div>
+    </section>
+    
   )
 }
 

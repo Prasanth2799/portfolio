@@ -16,7 +16,7 @@ const Navbar = () => {
   <div>
     <ul className="flex gap-4">
         <li className="cursor-pointer hover:underline decoration-primary underline-offset-4 transition-all duration-200">Home</li>
-        <li className="cursor-pointer hover:underline decoration-primary underline-offset-4 transition-all duration-200">About</li>
+        <a href="#about"><li className="cursor-pointer hover:underline decoration-primary underline-offset-4 transition-all duration-200">About</li></a>
         <li className="cursor-pointer hover:underline decoration-primary underline-offset-4 transition-all duration-200">Skills</li>
         <li className="cursor-pointer hover:underline decoration-primary underline-offset-4 transition-all duration-200">Projects</li>
         <li className="cursor-pointer hover:underline decoration-primary underline-offset-4 transition-all duration-200">Contact</li>
