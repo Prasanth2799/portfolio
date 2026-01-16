@@ -4,9 +4,11 @@ import { SiGmail } from "react-icons/si"
 const Icons = () => {
   return (
     <div className="flex gap-10 p-2 m-4 text-center">
-        <FaGithub size={40}/>
-        <FaLinkedin size={40}/>
-        <SiGmail size={40}/>
+        <a href="https://github.com/Prasanth2799" target="_blank"><FaGithub size={40}/></a>
+        <a href="https://www.linkedin.com/in/lenka-prasanth-kumar/" target="_blank"><FaLinkedin size={40}/></a>
+        <a href="mailto:prasanthlenka2@gmail.com" target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Send email"><SiGmail size={40}/></a>
     </div>
   )
 }

@@ -7,21 +7,21 @@ import { MdArrowOutward } from "react-icons/md"
       name : "Dev Connect",
       photo : "/Dev Connect.png",
       description : "A platform for developers to connect",
-      live_link : "",
-      github_url : ""
+      live_link : "https://www.dev-connectcom.site/login",
+      github_url : "https://github.com/Prasanth2799/devConnect"
     },
     {
       id : 2,
       name : "Netflix GPT",
       photo : "/Netflix GPT.png",
       description : "AI-Powered Movie Recommendation App.",
-      live_link : "",
-      github_url : ""
+      live_link : "https://moviz-gpt-lpk99.netlify.app/",
+      github_url : "https://github.com/Prasanth2799/netflix-gpt"
     }
   ]
   return (
     
-    <div className="flex flex-wrap gap-4 min-h-screen justify-center">
+    <section id="projects" className="flex flex-wrap gap-4 min-h-screen justify-center">
     {projectConfig.map((project) => (
       <div key={project?.id}>
         <div className="card bg-base-100 w-96 shadow-sm">
@@ -35,18 +35,20 @@ import { MdArrowOutward } from "react-icons/md"
     <h2 className="card-title">{project?.name}</h2>
     <p>{project?.description}</p>
     <div className="card-actions">
+      <a href={project?.live_link} target="_blank">
       <button className="btn bg-transparent border border-blue-500">
       <MdArrowOutward />  
       LIVE
       </button>
-      <button className="btn btn-primary">Github</button>
+      </a>
+<a href={project?.github_url}><button className="btn btn-primary">Github</button></a>
 
     </div>
   </div>
 </div>
       </div>
     ))}
-    </div>
+    </section>
   )
 }
 

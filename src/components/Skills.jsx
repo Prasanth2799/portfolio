@@ -18,7 +18,7 @@ import {
 
 const Skills = () => {
   return (
-    <div className="text-center p-6 min-h-screen my-auto">
+    <section id="skills" className="text-center p-6 min-h-screen my-auto">
       <h1 className="text-3xl font-bold mb-8">Skills</h1>
 
       <div className="flex flex-wrap justify-center gap-6">
@@ -99,7 +99,7 @@ const Skills = () => {
         </div>
 
       </div>
-    </div>
+    </section>
   )
 }
 
