@@ -18,7 +18,7 @@ import {
 
 const Skills = () => {
   return (
-    <section id="skills" className="text-center p-6 min-h-screen my-auto">
+    <section id="skills" className="text-center p-6 py-20 my-auto">
       <h1 className="text-3xl font-bold mb-8">Skills</h1>
 
       <div className="flex flex-wrap justify-center gap-6">

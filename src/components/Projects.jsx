@@ -21,8 +21,10 @@ import { MdArrowOutward } from "react-icons/md"
   ]
   return (
     
-    <section id="projects" className="flex flex-wrap gap-4 min-h-screen justify-center">
-    {projectConfig.map((project) => (
+    <section id="projects">
+      <h1 className="text-center font-semibold text-3xl">Projects</h1>
+      <div className="flex flex-wrap gap-4 py-20 justify-center">
+        {projectConfig.map((project) => (
       <div key={project?.id}>
         <div className="card bg-base-100 w-96 shadow-sm">
   <figure>
@@ -48,6 +50,8 @@ import { MdArrowOutward } from "react-icons/md"
 </div>
       </div>
     ))}
+      </div>
+    
     </section>
   )
 }

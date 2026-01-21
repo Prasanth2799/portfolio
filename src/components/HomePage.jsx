@@ -19,7 +19,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <section id="home" className="hero min-h-screen">
+    <section id="home" className="hero py-10">
       <div className="hero-content text-center flex flex-col">
         <div className="max-w-xl">
           <h1 className="text-5xl font-bold leading-tight">
@@ -46,7 +46,7 @@ const HomePage = () => {
             </a>
 
             <button className="btn btn-outline">
-              View Projects
+              <a href="#projects">View Projects</a>
             </button>
           </div>         
         </div>

@@ -1,6 +1,6 @@
 const Experience = () => {
   return (
-    <div className="min-h-screen my-2">
+    <div className="py-20 my-2">
       <h1 className="text-center text-xl font-extrabold mb-10">
         Professional Experience
       </h1>
