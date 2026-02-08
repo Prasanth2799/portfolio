@@ -1,5 +1,6 @@
 import About from './components/About'
 import Contact from './components/Contact'
+import Footer from './components/Footer'
 import HomePage from './components/HomePage'
 import Navbar from './components/Navbar'
 import ProfileTabs from './components/ProfileTabs'
@@ -16,6 +17,7 @@ function App() {
       <Projects />
       <ProfileTabs />
       <Contact />
+      <Footer />
     </div>
   )
 }
