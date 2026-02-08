@@ -38,7 +38,7 @@ const HomePage = () => {
 
           <div className="flex justify-center gap-4">
             <a
-              href="/Lenka_Prasanth_Kumar_FE_Resume.pdf"
+              href="/Lenka_Prasanth_Kumar_Full_Stack_Developer_Resume.pdf"
               download
               className="btn btn-primary"
             >
