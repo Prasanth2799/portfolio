@@ -10,7 +10,7 @@ const Footer = () => {
             Lenka Prasanth Kumar
           </h2>
           <p className="mt-2 text-sm text-gray-400">
-            Frontend Developer • React • Tailwind
+            Frontend-Focused MERN Developer • React • Tailwind • JavaScript • Node.js • MongoDB 
           </p>
         </div>
 
