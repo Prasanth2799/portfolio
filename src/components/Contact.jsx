@@ -1,6 +1,7 @@
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 import { useRef } from "react";
+import Icons from "./Icons";
 
 const Contact = () => {
   const formRef = useRef();
@@ -40,15 +41,7 @@ const Contact = () => {
         </p>
 
         <div className="flex justify-center gap-8 mb-12">
-          <a href="mailto:yourmail@gmail.com" className="text-3xl text-gray-400 hover:text-primary">
-            <FaEnvelope />
-          </a>
-          <a href="https://github.com/yourusername" target="_blank" className="text-3xl text-gray-400 hover:text-primary">
-            <FaGithub />
-          </a>
-          <a href="https://linkedin.com/in/yourusername" target="_blank" className="text-3xl text-gray-400 hover:text-primary">
-            <FaLinkedin />
-          </a>
+          <Icons />
         </div>
 
         {/* 👇 FORM */}
