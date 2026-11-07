@@ -9,14 +9,16 @@ import Skills from './components/Skills'
 
 function App() {
   return (
-    <div className="bg-base-200 min-h-screen">
+    <div className="min-h-screen text-slate-100">
       <Navbar />
-      <HomePage />
-      <About />
-      <Skills />
-      <Projects />
-      <ProfileTabs />
-      <Contact />
+      <main>
+        <HomePage />
+        <About />
+        <Skills />
+        <Projects />
+        <ProfileTabs />
+        <Contact />
+      </main>
       <Footer />
     </div>
   )

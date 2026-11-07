@@ -2,41 +2,38 @@ import Icons from "./Icons";
 
 const Footer = () => {
   return (
-    <footer className="bg-base-300 text-gray-300">
-      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-        
+    <footer className="border-t border-white/10 bg-slate-950/80">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-3 md:px-6">
         <div>
-          <h2 className="text-2xl font-bold text-white">
-            Lenka Prasanth Kumar
-          </h2>
-          <p className="mt-2 text-sm text-gray-400">
-            Frontend-Focused MERN Developer • React • Tailwind • JavaScript • Node.js • MongoDB 
+          <h2 className="text-2xl font-bold text-white">Lenka Prasanth Kumar</h2>
+          <p className="mt-3 max-w-xs text-sm leading-7 text-slate-400">
+            Frontend-focused MERN developer building modern, responsive digital experiences.
           </p>
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-white mb-3">
-            Quick Links
-          </h3>
-          <ul className="space-y-2 text-sm">
-            <li><a href="#about" className="hover:text-white">About</a></li>
-            <li><a href="#projects" className="hover:text-white">Projects</a></li>
-            <li><a href="#skills" className="hover:text-white">Skills</a></li>
-            <li><a href="#contact" className="hover:text-white">Contact</a></li>
+          <h3 className="mb-4 text-lg font-semibold text-white">Quick Links</h3>
+          <ul className="space-y-3 text-sm text-slate-300">
+            <li><a href="#about" className="transition hover:text-cyan-300">About</a></li>
+            <li><a href="#projects" className="transition hover:text-cyan-300">Projects</a></li>
+            <li><a href="#skills" className="transition hover:text-cyan-300">Skills</a></li>
+            <li><a href="#contact" className="transition hover:text-cyan-300">Contact</a></li>
           </ul>
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-white mb-3">
-            Connect
-          </h3>
-          <div className="flex gap-4">
-            <Icons />
+          <h3 className="mb-4 text-lg font-semibold text-white">Connect</h3>
+          <div className="mt-2 flex items-center gap-3 text-slate-300">
+            <a href="https://github.com/Prasanth2799" target="_blank" rel="noreferrer" className="transition hover:text-cyan-300">GitHub</a>
+            <span className="text-slate-500">•</span>
+            <a href="https://www.linkedin.com/in/lenka-prasanth-kumar/" target="_blank" rel="noreferrer" className="transition hover:text-cyan-300">LinkedIn</a>
+            <span className="text-slate-500">•</span>
+            <a href="mailto:prasanthlenka2@gmail.com" className="transition hover:text-cyan-300">Email</a>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-gray-800 text-center py-4 text-sm text-gray-500">
+      <div className="border-t border-white/10 py-4 text-center text-sm text-slate-400">
         © {new Date().getFullYear()} Lenka Prasanth Kumar. All rights reserved.
       </div>
     </footer>

@@ -5,102 +5,74 @@ import {
   FaReact,
   FaNodeJs,
   FaBootstrap,
-  FaAws
-} from "react-icons/fa"
+  FaAws,
+  FaGithub,
+} from "react-icons/fa";
 import {
   SiMongodb,
   SiExpress,
   SiNextdotjs,
   SiSocketdotio,
   SiJsonwebtokens,
-  SiFirebase
-} from "react-icons/si"
+  SiFirebase,
+  SiOpenai,
+  SiGithubcopilot,
+} from "react-icons/si";
+
+const skills = [
+  { name: "HTML", icon: FaHtml5 },
+  { name: "CSS", icon: FaCss3Alt },
+  { name: "JavaScript", icon: FaJs },
+  { name: "React", icon: FaReact },
+  { name: "Next.js", icon: SiNextdotjs },
+  { name: "Bootstrap", icon: FaBootstrap },
+  { name: "Node.js", icon: FaNodeJs },
+  { name: "Express", icon: SiExpress },
+  { name: "MongoDB", icon: SiMongodb },
+  { name: "Mongoose", icon: "M" },
+  { name: "REST APIs", icon: "API" },
+  { name: "Socket.io", icon: SiSocketdotio },
+  { name: "AWS", icon: FaAws },
+  { name: "JWT", icon: SiJsonwebtokens },
+  { name: "Firebase", icon: SiFirebase },
+  { name: "GitHub Copilot", icon: SiGithubcopilot },
+  { name: "LLM API Integration", icon: SiOpenai },
+  { name: "AI-assisted Development", icon: FaGithub },
+  { name: "Code Review", icon: "CR" },
+  { name: "Responsive Design", icon: "R" },
+];
 
 const Skills = () => {
   return (
-    <section id="skills" className="text-center p-6 py-20 my-8 md:my-0">
-      <h1 className="text-3xl font-bold mb-8">Skills</h1>
-
-      <div className="flex flex-wrap justify-center gap-6">
-
-        <div className="w-24 h-24 border border-blue-500 rounded-xl shadow-lg flex flex-col items-center justify-center hover:scale-105 transition">
-          <FaHtml5 size={36} />
-          <p className="mt-2 text-sm font-semibold">HTML</p>
+    <section id="skills" className="px-4 py-20 sm:py-24">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-12 text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">Skills</p>
+          <h2 className="mt-4 text-3xl font-bold text-white sm:text-4xl">
+            Tools and technologies I use to build products
+          </h2>
         </div>
 
-        <div className="w-24 h-24 border border-blue-500 rounded-xl shadow-lg flex flex-col items-center justify-center hover:scale-105 transition">
-          <FaCss3Alt size={36} />
-          <p className="mt-2 text-sm font-semibold">CSS</p>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 xl:grid-cols-5">
+          {skills.map(({ name, icon: Icon }) => (
+            <div
+              key={name}
+              className="group flex min-h-24 items-center gap-3 rounded-2xl border border-slate-200/80 bg-white/70 p-3 text-left shadow-sm shadow-blue-950/5 transition duration-300 hover:-translate-y-1 hover:border-blue-300 hover:bg-white hover:shadow-lg hover:shadow-blue-900/10 sm:gap-4 sm:p-4"
+            >
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition group-hover:bg-blue-100">
+                {typeof Icon === "string" ? (
+                  <span className="text-sm font-black">{Icon}</span>
+                ) : (
+                  <Icon size={22} />
+                )}
+              </div>
+              <p className="text-sm font-semibold leading-5 text-slate-800 sm:text-base">{name}</p>
+            </div>
+          ))}
         </div>
-
-        <div className="w-24 h-24 border border-blue-500 rounded-xl shadow-lg flex flex-col items-center justify-center hover:scale-105 transition">
-          <FaJs size={36} />
-          <p className="mt-2 text-sm font-semibold">JavaScript</p>
-        </div>
-
-        <div className="w-24 h-24 border border-blue-500 rounded-xl shadow-lg flex flex-col items-center justify-center hover:scale-105 transition">
-          <FaReact size={36} />
-          <p className="mt-2 text-sm font-semibold">React</p>
-        </div>
-
-        <div className="w-24 h-24 border border-blue-500 rounded-xl shadow-lg flex flex-col items-center justify-center hover:scale-105 transition">
-          <SiNextdotjs size={36} />
-          <p className="mt-2 text-sm font-semibold">Next.js</p>
-        </div>
-
-        <div className="w-24 h-24 border border-blue-500 rounded-xl shadow-lg flex flex-col items-center justify-center hover:scale-105 transition">
-          <FaBootstrap size={36} />
-          <p className="mt-2 text-sm font-semibold">Bootstrap</p>
-        </div>
-
-        <div className="w-24 h-24 border border-blue-500 rounded-xl shadow-lg flex flex-col items-center justify-center hover:scale-105 transition">
-          <FaNodeJs size={36} />
-          <p className="mt-2 text-sm font-semibold">Node.js</p>
-        </div>
-
-        <div className="w-24 h-24 border border-blue-500 rounded-xl shadow-lg flex flex-col items-center justify-center hover:scale-105 transition">
-          <SiExpress size={36} />
-          <p className="mt-2 text-sm font-semibold">Express</p>
-        </div>
-
-        <div className="w-24 h-24 border border-blue-500 rounded-xl shadow-lg flex flex-col items-center justify-center hover:scale-105 transition">
-          <SiMongodb size={36} />
-          <p className="mt-2 text-sm font-semibold">MongoDB</p>
-        </div>
-
-        <div className="w-24 h-24 border border-blue-500 rounded-xl shadow-lg flex flex-col items-center justify-center hover:scale-105 transition">
-          <p className="text-lg font-bold">M</p>
-          <p className="mt-1 text-sm font-semibold">Mongoose</p>
-        </div>
-
-        <div className="w-24 h-24 border border-blue-500 rounded-xl shadow-lg flex flex-col items-center justify-center hover:scale-105 transition">
-          <SiSocketdotio size={36} />
-          <p className="mt-2 text-sm font-semibold">Socket.io</p>
-        </div>
-
-        <div className="w-24 h-24 border border-blue-500 rounded-xl shadow-lg flex flex-col items-center justify-center hover:scale-105 transition">
-          <FaAws size={36} />
-          <p className="mt-2 text-sm font-semibold">AWS</p>
-        </div>
-
-        <div className="w-24 h-24 border border-blue-500 rounded-xl shadow-lg flex flex-col items-center justify-center hover:scale-105 transition">
-          <SiJsonwebtokens size={36} />
-          <p className="mt-2 text-sm font-semibold">JWT</p>
-        </div>
-
-        <div className="w-24 h-24 border border-blue-500 rounded-xl shadow-lg flex flex-col items-center justify-center hover:scale-105 transition">
-          <SiFirebase size={36} />
-          <p className="mt-2 text-sm font-semibold">Firebase</p>
-        </div>
-
-        <div className="w-24 h-24 border border-blue-500 rounded-xl shadow-lg flex flex-col items-center justify-center hover:scale-105 transition">
-          <p className="text-lg font-bold">API</p>
-          <p className="mt-1 text-sm font-semibold">REST API</p>
-        </div>
-
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Skills
+export default Skills;

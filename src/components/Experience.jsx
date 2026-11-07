@@ -1,54 +1,43 @@
 const Experience = () => {
   return (
-    <div className="py-20 my-2">
-      <h1 className="text-center text-xl font-extrabold mb-10">
-        Professional Experience
-      </h1>
-
-      <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
-        <li>
-          <hr />
-          <div className="timeline-middle">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-6 w-6">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
-            </svg>
+    <div className="mx-auto max-w-4xl">
+      <div className="relative space-y-6 before:absolute before:left-3 before:top-0 before:h-full before:w-px before:bg-cyan-400/20">
+        <div className="relative pl-10">
+          <div className="absolute left-0 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-cyan-400 text-slate-950 shadow-[0_0_30px_rgba(34,211,238,0.8)]">
+            <span className="h-2.5 w-2.5 rounded-full bg-slate-950" />
           </div>
-
-          <div className="timeline-end md:mb-12">
-            <time className="font-mono italic text-sm">2024</time>
-            <div className="text-2xl font-black mt-1">Infosys</div>
-            <div className="text-lg font-semibold">Systems Associate</div>
-
-            <p className="mt-3 text-sm text-gray-500 max-w-md">
-              Worked on automation and testing-related activities, gaining exposure to
-              enterprise applications, structured workflows, and quality assurance processes.
+          <div className="glass-card rounded-[1.75rem] p-6">
+            <time className="text-sm uppercase tracking-[0.2em] text-cyan-300">July 2026 – Present</time>
+            <h3 className="mt-3 text-2xl font-bold text-white">Tata Consultancy Services</h3>
+            <p className="mt-2 text-lg text-slate-200">Senior Frontend Developer</p>
+            <p className="mt-4 text-base leading-7 text-slate-300">
+              Working in the BFSI domain, delivering modern frontend solutions with a strong focus on
+              user experience, performance, accessibility, and maintainable component architecture.
+              I contribute to scalable product development while collaborating closely with product,
+              design, and engineering teams to ship robust digital experiences.
             </p>
           </div>
-          <hr />
-        </li>
-        <li>
-          <div className="timeline-middle">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-6 w-6">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
-            </svg>
+        </div>
+
+        <div className="relative pl-10">
+          <div className="absolute left-0 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-cyan-400 text-slate-950 shadow-[0_0_30px_rgba(34,211,238,0.8)]">
+            <span className="h-2.5 w-2.5 rounded-full bg-slate-950" />
           </div>
-
-          <div className="timeline-start mb-12 md:text-end">
-            <time className="font-mono italic text-sm">May 2022 – Present</time>
-            <div className="text-2xl font-black mt-1">Infosys</div>
-            <div className="text-lg font-semibold">Operations Executive</div>
-
-            <p className="mt-3 text-sm text-gray-500 max-w-md">
-              Supported enterprise operations, followed standard operating procedures,
-              and collaborated with cross-functional teams to ensure process efficiency
-              and quality delivery.
+          <div className="glass-card rounded-[1.75rem] p-6">
+            <time className="text-sm uppercase tracking-[0.2em] text-cyan-300">May 2022 – July 2026</time>
+            <h3 className="mt-3 text-2xl font-bold text-white">Infosys</h3>
+            <p className="mt-2 text-lg text-slate-200">Senior Systems Associate – Frontend Developer</p>
+            <p className="mt-4 text-base leading-7 text-slate-300">
+              Built and enhanced frontend experiences for financial and manufacturing business units,
+              focusing on responsive interfaces, business workflow optimization, and clean user-facing
+              implementations. Worked across enterprise product requirements to improve usability,
+              operational efficiency, and delivery quality while supporting smooth day-to-day application usage.
             </p>
           </div>
-          <hr />
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Experience
+export default Experience;
