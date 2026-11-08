@@ -1,47 +1,63 @@
 import { useState } from "react";
-import Experience from "./Experience";
+import { FaBriefcase, FaGraduationCap } from "react-icons/fa";
 import Education from "./Education";
+import Experience from "./Experience";
+import SectionHeader from "./ui/SectionHeader";
 
 const tabs = [
-  { id: "experience", label: "Professional Experience" },
-  { id: "education", label: "Education" },
+  { id: "experience", label: "Work Experience", icon: FaBriefcase },
+  { id: "education", label: "Education & Foundation", icon: FaGraduationCap },
 ];
 
 const ProfileTabs = () => {
   const [activeTab, setActiveTab] = useState("experience");
 
   return (
-    <div className="px-4 py-20 sm:py-24">
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-12 text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">Journey</p>
-          <h2 className="mt-4 text-3xl font-bold text-white sm:text-4xl">Career timeline</h2>
+    <section id="journey" className="py-20 sm:py-28">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Career Timeline"
+          title="Built through real-world"
+          highlight="engineering."
+          description="A track record spanning enterprise BFSI clients, high-velocity frontend architecture, and continuous learning."
+        />
+
+        {/* Tab Switcher */}
+        <div className="mb-10 flex justify-center">
+          <div
+            role="tablist"
+            aria-label="Experience and education switcher"
+            className="inline-flex rounded-full border border-white/[0.08] bg-zinc-900/70 p-1.5 backdrop-blur-xl"
+          >
+            {tabs.map((tab) => {
+              const Icon = tab.icon;
+              const isSelected = activeTab === tab.id;
+
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isSelected}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex items-center gap-2 rounded-full px-5 py-2 font-mono text-xs uppercase tracking-[0.14em] transition duration-200 ${
+                    isSelected
+                      ? "bg-white text-zinc-950 font-bold shadow-md"
+                      : "text-zinc-400 hover:text-white"
+                  }`}
+                >
+                  <Icon size={13} />
+                  <span>{tab.label}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        <div role="tablist" className="tabs tabs-boxed justify-center rounded-full bg-slate-900/70 p-2">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              type="button"
-              role="tab"
-              aria-selected={activeTab === tab.id}
-              className={`tab rounded-full px-5 py-3 text-sm font-semibold transition ${
-                activeTab === tab.id
-                  ? "tab-active bg-cyan-400 text-slate-950"
-                  : "text-slate-200 hover:text-cyan-300"
-              }`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        <div className="mt-10">
-          {activeTab === "experience" ? <Experience /> : <Education />}
-        </div>
+        {/* Tab Panel Content */}
+        <div>{activeTab === "experience" ? <Experience /> : <Education />}</div>
       </div>
-    </div>
+    </section>
   );
 };
 

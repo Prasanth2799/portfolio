@@ -1,35 +1,51 @@
+import { FaCheck, FaGraduationCap } from "react-icons/fa";
+import { educationData } from "../data/portfolioData";
+import BentoCard from "./ui/BentoCard";
+
 const Education = () => {
   return (
-    <div className="mx-auto max-w-4xl">
-      <div className="relative space-y-6 before:absolute before:left-3 before:top-0 before:h-full before:w-px before:bg-cyan-400/20">
-        <div className="relative pl-10">
-          <div className="absolute left-0 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-cyan-400 text-slate-950 shadow-[0_0_30px_rgba(34,211,238,0.8)]">
-            <span className="h-2.5 w-2.5 rounded-full bg-slate-950" />
-          </div>
-          <div className="glass-card rounded-[1.75rem] p-6">
-            <time className="text-sm uppercase tracking-[0.2em] text-cyan-300">2022</time>
-            <h3 className="mt-3 text-2xl font-bold text-white">NxtWave CCBP 4.0 Intensive Program</h3>
-            <p className="mt-4 text-base leading-7 text-slate-300">
-              Completed a hands-on MERN stack development program, building strong practical skills in
-              MongoDB, Express.js, React, and Node.js while working on full-stack web applications.
-            </p>
-          </div>
-        </div>
+    <div className="space-y-6">
+      {educationData.map((edu) => (
+        <BentoCard key={edu.institution} className="relative overflow-hidden p-6 sm:p-8">
+          <div className="flex flex-col justify-between gap-4 border-b border-white/[0.08] pb-6 sm:flex-row sm:items-center">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-emerald-400">
+                {edu.degree}
+              </span>
+              <h3 className="text-2xl font-bold tracking-tight text-white">{edu.institution}</h3>
+            </div>
 
-        <div className="relative pl-10">
-          <div className="absolute left-0 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-cyan-400 text-slate-950 shadow-[0_0_30px_rgba(34,211,238,0.8)]">
-            <span className="h-2.5 w-2.5 rounded-full bg-slate-950" />
+            <div className="inline-flex items-center gap-2 self-start rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 font-mono text-xs text-zinc-300 sm:self-auto">
+              <FaGraduationCap size={13} className="text-zinc-400" />
+              <span>{edu.period}</span>
+            </div>
           </div>
-          <div className="glass-card rounded-[1.75rem] p-6">
-            <time className="text-sm uppercase tracking-[0.2em] text-cyan-300">2017 – 2020</time>
-            <h3 className="mt-3 text-2xl font-bold text-white">B.Sc (MPC)</h3>
-            <p className="mt-4 text-base leading-7 text-slate-300">
-              Completed graduation in MPC and later transitioned into software development by building
-              a foundation in analytical thinking and problem solving.
-            </p>
+
+          <p className="mt-6 text-sm leading-relaxed text-zinc-300 sm:text-base">
+            {edu.description}
+          </p>
+
+          <ul className="mt-4 space-y-2">
+            {edu.achievements.map((item) => (
+              <li key={item} className="flex items-start gap-2.5 text-xs text-zinc-400 sm:text-sm">
+                <FaCheck className="mt-1 shrink-0 text-emerald-400" size={11} />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-6 flex flex-wrap gap-1.5 border-t border-white/[0.06] pt-5">
+            {edu.tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-lg border border-white/10 bg-white/[0.02] px-2.5 py-1 font-mono text-[11px] text-zinc-300"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
-        </div>
-      </div>
+        </BentoCard>
+      ))}
     </div>
   );
 };

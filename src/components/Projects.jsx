@@ -1,91 +1,105 @@
-import { MdArrowOutward, MdCode } from "react-icons/md";
-
-const projectConfig = [
-  {
-    id: 1,
-    name: "Dev Connect",
-    photo: "/Dev Connect.png",
-    description: "A developer networking platform designed to help users share profiles, collaborate, and discover opportunities in the tech community.",
-    live_link: "https://www.dev-connectcom.site/login",
-    github_url: "https://github.com/Prasanth2799/devConnect",
-    stack: ["React", "Node.js", "MongoDB", "Express"],
-  },
-  {
-    id: 2,
-    name: "Netflix GPT",
-    photo: "/Netflix GPT.png",
-    description: "A movie discovery experience with AI-powered recommendations and a clean streaming-inspired interface built for fast browsing and better engagement.",
-    live_link: "https://moviz-gpt-lpk99.netlify.app/",
-    github_url: "https://github.com/Prasanth2799/netflix-gpt",
-    stack: ["React", "Redux", "OpenAI", "Tailwind"],
-  },
-];
+import { FaCheckCircle, FaGithub } from "react-icons/fa";
+import { MdArrowOutward } from "react-icons/md";
+import { projectsList } from "../data/portfolioData";
+import Badge from "./ui/Badge";
+import BentoCard from "./ui/BentoCard";
+import SectionHeader from "./ui/SectionHeader";
 
 const Projects = () => {
   return (
-    <section id="projects" className="px-4 py-20 sm:py-24">
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-12 text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">Projects</p>
-          <h2 className="mt-4 text-3xl font-bold text-white sm:text-4xl">
-            Self-driven product work built with <span className="text-cyan-300">real-world thinking</span>
-          </h2>
-        </div>
+    <section id="projects" className="py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Selected Portfolio"
+          title="Shipped products built with"
+          highlight="real-world rigor."
+          description="A showcase of self-driven full-stack and AI-powered product engineering, blending clean architecture with intuitive UI design."
+        />
 
+        {/* Modular Projects Grid */}
         <div className="grid gap-8 lg:grid-cols-2">
-          {projectConfig.map((project) => (
-            <article key={project.id} className="glass-card overflow-hidden rounded-[2rem] p-4">
-              <div className="overflow-hidden rounded-[1.25rem] border border-white/10 bg-slate-950/50">
+          {projectsList.map((project) => (
+            <BentoCard
+              key={project.id}
+              className="flex flex-col justify-between overflow-hidden p-0"
+              hover={true}
+            >
+              {/* Project Preview Image */}
+              <div className="group/img relative aspect-[16/10] overflow-hidden border-b border-white/[0.08] bg-zinc-950">
                 <img
                   src={project.photo}
-                  alt={`${project.name} preview`}
-                  className="h-56 w-full object-cover transition duration-500 hover:scale-105"
+                  alt={`${project.name} application preview`}
+                  className="h-full w-full object-cover object-top transition duration-700 group-hover/img:scale-105"
+                  loading="lazy"
                 />
+                <div className="absolute left-4 top-4">
+                  <Badge variant={project.badgeType}>{project.badge}</Badge>
+                </div>
               </div>
 
-              <div className="mt-5">
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-2xl font-bold text-white">{project.name}</h3>
-                  <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-cyan-200">
-                    Product Build
-                  </span>
+              {/* Project Details */}
+              <div className="flex flex-1 flex-col justify-between p-6 sm:p-8">
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                      {project.name}
+                    </h3>
+                    <p className="font-mono text-xs uppercase tracking-[0.15em] text-zinc-400">
+                      {project.subtitle}
+                    </p>
+                  </div>
+
+                  <p className="text-sm leading-relaxed text-zinc-300 sm:text-base">
+                    {project.description}
+                  </p>
+
+                  {/* Highlights Bullet List */}
+                  <ul className="space-y-2 border-t border-white/[0.06] pt-4">
+                    {project.highlights.map((highlight) => (
+                      <li key={highlight} className="flex items-start gap-2.5 text-xs text-zinc-400 sm:text-sm">
+                        <FaCheckCircle className="mt-0.5 shrink-0 text-emerald-400" size={13} />
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Tech Stack Pills */}
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {project.stack.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1 font-mono text-[11px] text-zinc-300"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
-                <p className="mt-4 text-base leading-7 text-slate-300">{project.description}</p>
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {project.stack.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-200"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-6 flex flex-wrap gap-3">
+                {/* Action Buttons */}
+                <div className="mt-8 flex flex-wrap items-center gap-3 border-t border-white/[0.08] pt-6">
                   <a
                     href={project.live_link}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-200 transition hover:bg-cyan-400/20"
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-[0.14em] text-zinc-950 transition duration-200 hover:bg-zinc-200"
                   >
-                    <MdArrowOutward size={16} />
-                    Live Demo
+                    <span>Live Demo</span>
+                    <MdArrowOutward size={15} />
                   </a>
+
                   <a
                     href={project.github_url}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-200"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 py-2.5 font-mono text-xs font-medium uppercase tracking-[0.14em] text-zinc-200 transition duration-200 hover:border-white/30 hover:bg-white/10 hover:text-white"
                   >
-                    <MdCode size={16} />
-                    GitHub
+                    <FaGithub size={14} />
+                    <span>Source Code</span>
                   </a>
                 </div>
               </div>
-            </article>
+            </BentoCard>
           ))}
         </div>
       </div>

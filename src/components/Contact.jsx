@@ -1,12 +1,21 @@
 import emailjs from "@emailjs/browser";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { FaCheckCircle, FaExclamationCircle, FaPaperPlane } from "react-icons/fa";
+import { personalInfo } from "../data/portfolioData";
+import BentoCard from "./ui/BentoCard";
+import CopyButton from "./ui/CopyButton";
 import Icons from "./Icons";
+import SectionHeader from "./ui/SectionHeader";
 
 const Contact = () => {
-  const formRef = useRef();
+  const formRef = useRef(null);
+  const [sending, setSending] = useState(false);
+  const [status, setStatus] = useState({ type: "", message: "" });
 
   const sendEmail = (e) => {
     e.preventDefault();
+    setSending(true);
+    setStatus({ type: "", message: "" });
 
     emailjs
       .sendForm(
@@ -17,64 +26,186 @@ const Contact = () => {
       )
       .then(
         () => {
-          alert("Message sent successfully ✅");
-          e.target.reset();
+          formRef.current?.reset();
+          setStatus({
+            type: "success",
+            message: "Message received! Thank you for reaching out—I'll get back to you within 24 hours.",
+          });
         },
         (error) => {
-          alert("Failed to send message ❌");
-          console.error(error);
+          console.error("Email send error:", error);
+          setStatus({
+            type: "error",
+            message: `Could not send message automatically. Please write directly to ${personalInfo.email}.`,
+          });
         }
-      );
+      )
+      .finally(() => setSending(false));
   };
 
   return (
-    <section id="contact" className="px-4 py-20 sm:py-24">
-      <div className="mx-auto max-w-5xl">
-        <div className="mb-12 text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">Contact</p>
-          <h2 className="mt-4 text-3xl font-bold text-white sm:text-4xl">Let&apos;s build something great together</h2>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-slate-300">
-            I&apos;m open to opportunities, collaborations, and meaningful conversations around product design and web development.
-          </p>
+    <section id="contact" className="py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Initiate Contact"
+          title="Have an exciting project or role"
+          highlight="in mind?"
+          description="Whether you are hiring for a senior frontend role, architecting a high-impact web product, or exploring AI workflows, let's talk."
+        />
+
+        {/* Split Bento Grid */}
+        <div className="grid gap-8 lg:grid-cols-12">
+          {/* Left Column: Direct Info Bento (5 cols) */}
+          <BentoCard className="flex flex-col justify-between p-6 sm:p-8 lg:col-span-5">
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-emerald-300">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                <span>Response within 24 hours</span>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                  Let&apos;s build something remarkable together.
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-zinc-400 sm:text-base">
+                  Available for full-time frontend roles, strategic consulting, and bespoke product
+                  engineering.
+                </p>
+              </div>
+
+              {/* Direct Email Card */}
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400">
+                  Direct Email:
+                </span>
+                <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+                  <a
+                    href={`mailto:${personalInfo.email}`}
+                    className="font-mono text-sm font-semibold text-white hover:text-emerald-300"
+                  >
+                    {personalInfo.email}
+                  </a>
+                  <CopyButton text={personalInfo.email} label="Copy" copiedLabel="Copied!" />
+                </div>
+              </div>
+
+              {/* Location Card */}
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400">
+                  Location &amp; Work Model:
+                </span>
+                <p className="mt-1 font-mono text-xs text-zinc-200">
+                  {personalInfo.location}
+                </p>
+              </div>
+            </div>
+
+            {/* Social Block */}
+            <div className="mt-8 border-t border-white/[0.08] pt-6">
+              <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400">
+                Professional Networks:
+              </span>
+              <div className="mt-3">
+                <Icons />
+              </div>
+            </div>
+          </BentoCard>
+
+          {/* Right Column: Contact Form Bento (7 cols) */}
+          <BentoCard className="p-6 sm:p-8 lg:col-span-7">
+            <form ref={formRef} onSubmit={sendEmail} className="space-y-5">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <label htmlFor="from_name" className="block font-mono text-xs uppercase tracking-[0.14em] text-zinc-300">
+                    Your Name *
+                  </label>
+                  <input
+                    id="from_name"
+                    type="text"
+                    name="from_name"
+                    required
+                    placeholder="e.g. Alex Rivera"
+                    className="w-full rounded-xl border border-white/10 bg-zinc-950/70 px-4 py-3 font-mono text-xs text-white placeholder-zinc-400 transition focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="from_email" className="block font-mono text-xs uppercase tracking-[0.14em] text-zinc-300">
+                    Email Address *
+                  </label>
+                  <input
+                    id="from_email"
+                    type="email"
+                    name="from_email"
+                    required
+                    placeholder="alex@company.com"
+                    className="w-full rounded-xl border border-white/10 bg-zinc-950/70 px-4 py-3 font-mono text-xs text-white placeholder-zinc-400 transition focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="subject" className="block font-mono text-xs uppercase tracking-[0.14em] text-zinc-300">
+                  Subject / Scope
+                </label>
+                <input
+                  id="subject"
+                  type="text"
+                  name="subject"
+                  placeholder="Senior Frontend Role / Full-Stack Project Collaboration"
+                  className="w-full rounded-xl border border-white/10 bg-zinc-950/70 px-4 py-3 font-mono text-xs text-white placeholder-zinc-400 transition focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="message" className="block font-mono text-xs uppercase tracking-[0.14em] text-zinc-300">
+                  Your Message *
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={5}
+                  required
+                  placeholder="Tell me a bit about your product, timelines, or role requirements..."
+                  className="w-full resize-y rounded-xl border border-white/10 bg-zinc-950/70 px-4 py-3 font-mono text-xs text-white placeholder-zinc-400 transition focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={sending}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-[0.16em] text-zinc-950 transition duration-200 hover:bg-zinc-200 disabled:opacity-50 sm:w-auto"
+              >
+                {sending ? (
+                  <span>Dispatching Message...</span>
+                ) : (
+                  <>
+                    <span>Send Message</span>
+                    <FaPaperPlane size={12} />
+                  </>
+                )}
+              </button>
+
+              {status.message && (
+                <div
+                  className={`mt-4 flex items-center gap-2.5 rounded-xl border p-4 font-mono text-xs ${
+                    status.type === "success"
+                      ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-300"
+                      : "border-rose-500/30 bg-rose-500/10 text-rose-300"
+                  }`}
+                  role="status"
+                >
+                  {status.type === "success" ? (
+                    <FaCheckCircle className="shrink-0 text-emerald-400" size={15} />
+                  ) : (
+                    <FaExclamationCircle className="shrink-0 text-rose-400" size={15} />
+                  )}
+                  <span>{status.message}</span>
+                </div>
+              )}
+            </form>
+          </BentoCard>
         </div>
-
-        <div className="mb-10 flex justify-center">
-          <Icons />
-        </div>
-
-        <form ref={formRef} onSubmit={sendEmail} className="mx-auto max-w-2xl space-y-5 rounded-[2rem] border border-white/10 bg-slate-900/60 p-6 shadow-2xl shadow-slate-950/30 sm:p-8">
-          <div className="grid gap-5 sm:grid-cols-2">
-            <input
-              type="text"
-              name="from_name"
-              placeholder="Your Name"
-              className="w-full rounded-2xl border border-white/10 bg-slate-950/80 px-4 py-3 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:outline-none"
-              required
-            />
-
-            <input
-              type="email"
-              name="from_email"
-              placeholder="Your Email"
-              className="w-full rounded-2xl border border-white/10 bg-slate-950/80 px-4 py-3 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:outline-none"
-              required
-            />
-          </div>
-
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            className="h-36 w-full rounded-2xl border border-white/10 bg-slate-950/80 px-4 py-3 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:outline-none"
-            required
-          />
-
-          <button
-            type="submit"
-            className="w-full rounded-full bg-cyan-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300"
-          >
-            Send Message
-          </button>
-        </form>
       </div>
     </section>
   );

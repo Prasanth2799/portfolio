@@ -1,41 +1,54 @@
+import { FaBriefcase, FaCheck } from "react-icons/fa";
+import { experienceData } from "../data/portfolioData";
+import BentoCard from "./ui/BentoCard";
+
 const Experience = () => {
   return (
-    <div className="mx-auto max-w-4xl">
-      <div className="relative space-y-6 before:absolute before:left-3 before:top-0 before:h-full before:w-px before:bg-cyan-400/20">
-        <div className="relative pl-10">
-          <div className="absolute left-0 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-cyan-400 text-slate-950 shadow-[0_0_30px_rgba(34,211,238,0.8)]">
-            <span className="h-2.5 w-2.5 rounded-full bg-slate-950" />
-          </div>
-          <div className="glass-card rounded-[1.75rem] p-6">
-            <time className="text-sm uppercase tracking-[0.2em] text-cyan-300">July 2026 – Present</time>
-            <h3 className="mt-3 text-2xl font-bold text-white">Tata Consultancy Services</h3>
-            <p className="mt-2 text-lg text-slate-200">Senior Frontend Developer</p>
-            <p className="mt-4 text-base leading-7 text-slate-300">
-              Working in the BFSI domain, delivering modern frontend solutions with a strong focus on
-              user experience, performance, accessibility, and maintainable component architecture.
-              I contribute to scalable product development while collaborating closely with product,
-              design, and engineering teams to ship robust digital experiences.
-            </p>
-          </div>
-        </div>
+    <div className="space-y-6">
+      {experienceData.map((job) => (
+        <BentoCard key={job.company} className="relative overflow-hidden p-6 sm:p-8">
+          <div className="flex flex-col justify-between gap-4 border-b border-white/[0.08] pb-6 sm:flex-row sm:items-center">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-emerald-400">
+                {job.domain}
+              </span>
+              <h3 className="text-2xl font-bold tracking-tight text-white">{job.company}</h3>
+              <p className="font-mono text-sm uppercase tracking-[0.12em] text-zinc-300">
+                {job.role}
+              </p>
+            </div>
 
-        <div className="relative pl-10">
-          <div className="absolute left-0 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-cyan-400 text-slate-950 shadow-[0_0_30px_rgba(34,211,238,0.8)]">
-            <span className="h-2.5 w-2.5 rounded-full bg-slate-950" />
+            <div className="inline-flex items-center gap-2 self-start rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 font-mono text-xs text-zinc-300 sm:self-auto">
+              <FaBriefcase size={12} className="text-zinc-400" />
+              <span>{job.period}</span>
+            </div>
           </div>
-          <div className="glass-card rounded-[1.75rem] p-6">
-            <time className="text-sm uppercase tracking-[0.2em] text-cyan-300">May 2022 – July 2026</time>
-            <h3 className="mt-3 text-2xl font-bold text-white">Infosys</h3>
-            <p className="mt-2 text-lg text-slate-200">Senior Systems Associate – Frontend Developer</p>
-            <p className="mt-4 text-base leading-7 text-slate-300">
-              Built and enhanced frontend experiences for financial and manufacturing business units,
-              focusing on responsive interfaces, business workflow optimization, and clean user-facing
-              implementations. Worked across enterprise product requirements to improve usability,
-              operational efficiency, and delivery quality while supporting smooth day-to-day application usage.
-            </p>
+
+          <p className="mt-6 text-sm leading-relaxed text-zinc-300 sm:text-base">
+            {job.summary}
+          </p>
+
+          <ul className="mt-4 space-y-2">
+            {job.achievements.map((item) => (
+              <li key={item} className="flex items-start gap-2.5 text-xs text-zinc-400 sm:text-sm">
+                <FaCheck className="mt-1 shrink-0 text-emerald-400" size={11} />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-6 flex flex-wrap gap-1.5 border-t border-white/[0.06] pt-5">
+            {job.tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-lg border border-white/10 bg-white/[0.02] px-2.5 py-1 font-mono text-[11px] text-zinc-300"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
-        </div>
-      </div>
+        </BentoCard>
+      ))}
     </div>
   );
 };

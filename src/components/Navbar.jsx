@@ -1,52 +1,112 @@
-const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
-];
+import { useState } from "react";
+import { MdClose, MdMenu, MdSend } from "react-icons/md";
+import { navItems, personalInfo } from "../data/portfolioData";
 
-const Navbar = () => {
+const Navbar = ({ activeSection = "home" }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-        <a href="#home" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-cyan-400/50 bg-gradient-to-br from-cyan-400/20 to-blue-600/20 text-sm font-black tracking-[0.18em] text-cyan-200 shadow-lg shadow-cyan-500/20">
-            PK
+    <header className="sticky top-0 z-50 border-b border-white/[0.08] bg-zinc-950/80 backdrop-blur-2xl transition-all duration-300">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        {/* Brand Monogram & Name */}
+        <a
+          href="#home"
+          onClick={closeMenu}
+          className="group flex items-center gap-3.5 transition duration-200"
+          aria-label={`${personalInfo.name} - Home`}
+        >
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/[0.06] font-mono text-sm font-bold tracking-tight text-white transition duration-300 group-hover:border-white/30 group-hover:bg-white/[0.12] group-hover:scale-105">
+            {personalInfo.monogram}
           </div>
-          <span className="text-lg font-semibold tracking-wide text-white">Prasanth Kumar</span>
+          <div className="flex flex-col">
+            <span className="text-sm font-bold tracking-tight text-zinc-100 group-hover:text-white sm:text-base">
+              {personalInfo.name}
+            </span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400">
+              {personalInfo.title}
+            </span>
+          </div>
         </a>
 
-        <nav className="hidden items-center gap-6 lg:flex">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-slate-300 transition hover:text-cyan-300"
-            >
-              {item.label}
-            </a>
-          ))}
+        {/* Desktop Navigation Links */}
+        <nav className="hidden items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.03] p-1.5 md:flex" aria-label="Main Navigation">
+          {navItems.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <a
+                key={item.id}
+                href={item.href}
+                className={`relative rounded-full px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.15em] transition duration-200 ${
+                  isActive
+                    ? "bg-white text-zinc-950 shadow-sm"
+                    : "text-zinc-400 hover:text-zinc-100 hover:bg-white/[0.06]"
+                }`}
+              >
+                {item.label}
+              </a>
+            );
+          })}
         </nav>
 
-        <div className="dropdown dropdown-end lg:hidden">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle text-xl text-white">
-            ☰
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu dropdown-content z-[1] mt-3 w-52 rounded-box border border-white/10 bg-slate-900 p-2 shadow-2xl"
+        {/* Action Button & Mobile Menu Toggle */}
+        <div className="flex items-center gap-3">
+          <a
+            href="#contact"
+            className="hidden items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-xs font-mono font-medium uppercase tracking-[0.15em] text-zinc-200 transition duration-200 hover:border-white/30 hover:bg-white hover:text-zinc-950 sm:inline-flex"
           >
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <a href={item.href} className="text-slate-200 hover:text-cyan-300">
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+            <span>Let&apos;s Talk</span>
+            <MdSend size={13} aria-hidden="true" />
+          </a>
+
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-zinc-300 transition hover:bg-white/10 md:hidden"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? <MdClose size={20} /> : <MdMenu size={20} />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Drawer */}
+      {menuOpen && (
+        <div className="border-b border-white/10 bg-zinc-950/95 px-5 py-6 backdrop-blur-2xl md:hidden">
+          <nav className="flex flex-col space-y-2">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  onClick={closeMenu}
+                  className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-mono uppercase tracking-[0.15em] transition ${
+                    isActive
+                      ? "bg-white text-zinc-950 font-semibold"
+                      : "text-zinc-300 hover:bg-white/[0.05] hover:text-white"
+                  }`}
+                >
+                  <span>{item.label}</span>
+                  {isActive && <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />}
+                </a>
+              );
+            })}
+            <div className="pt-4">
+              <a
+                href="#contact"
+                onClick={closeMenu}
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.15em] text-zinc-950"
+              >
+                <span>Get in touch</span>
+                <MdSend size={14} />
+              </a>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 };
