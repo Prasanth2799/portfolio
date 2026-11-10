@@ -14,17 +14,17 @@ const Navbar = ({ activeSection = "home" }) => {
         <a
           href="#home"
           onClick={closeMenu}
-          className="group flex items-center gap-3.5 transition duration-200"
+          className="group flex items-center gap-2.5 sm:gap-3.5 transition duration-200"
           aria-label={`${personalInfo.name} - Home`}
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/[0.06] font-mono text-sm font-bold tracking-tight text-white transition duration-300 group-hover:border-white/30 group-hover:bg-white/[0.12] group-hover:scale-105">
+          <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl border border-white/15 bg-white/[0.06] font-mono text-xs sm:text-sm font-bold tracking-tight text-white transition duration-300 group-hover:border-white/30 group-hover:bg-white/[0.12] group-hover:scale-105">
             {personalInfo.monogram}
           </div>
           <div className="flex flex-col">
-            <span className="text-sm font-bold tracking-tight text-zinc-100 group-hover:text-white sm:text-base">
+            <span className="text-xs sm:text-base font-bold tracking-tight text-zinc-100 group-hover:text-white">
               {personalInfo.name}
             </span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400">
+            <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.16em] sm:tracking-[0.2em] text-zinc-400">
               {personalInfo.title}
             </span>
           </div>
@@ -62,12 +62,12 @@ const Navbar = ({ activeSection = "home" }) => {
 
           <button
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-zinc-300 transition hover:bg-white/10 md:hidden"
+            className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-zinc-300 transition hover:bg-white/10 md:hidden"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={menuOpen}
           >
-            {menuOpen ? <MdClose size={20} /> : <MdMenu size={20} />}
+            {menuOpen ? <MdClose size={18} /> : <MdMenu size={18} />}
           </button>
         </div>
       </div>
